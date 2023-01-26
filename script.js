@@ -9,7 +9,7 @@ canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
 
 let isPainting = false;
-let lineWidth = 5;
+let tloustka = 5;
 let startX;
 let startY;
 
@@ -20,13 +20,38 @@ toolbar.addEventListener('click', e => {
 });
 
 toolbar.addEventListener('change', e => {
-    if(e.target.id === 'stroke') {
+    if(e.target.id === 'barva') {
         ctx.strokeStyle = e.target.value;
     }
 
-    if(e.target.id === 'lineWidth') {
-        lineWidth = e.target.value;
+    if(e.target.id === 'tloustka') {
+        tloustka = e.target.value;
     }
 
 });
 
+const draw = (e) => {
+    if(!isPainting) {
+        return;
+    }
+
+    ctx.tloustka = tloustka;
+    ctx.lineCap = 'round';
+
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
+    ctx.stroke();
+}
+
+canvas.addEventListener('mousedown', (e) => {
+    isPainting = true;
+    startX = e.clientX;
+    startY = e.clientY;
+});
+
+canvas.addEventListener('mouseup', e => {
+    isPainting = false;
+    ctx.tloustka();
+    ctx.beginPath();
+});
+
+canvas.addEventListener('mousemove', draw);
