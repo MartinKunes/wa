@@ -1,0 +1,35 @@
+body{
+margin: 0;
+padding: 0;
+height: 100;
+ overflow: hidden;
+ color: white;
+ }
+
+ .container{
+ height: 100;
+ display: flex;}
+
+ #toolbar{
+ display: flex;
+ flex-direction: column;
+ padding: 5px;
+ width: 70px;
+
+ }
+
+ #toolbar label{
+ font-size: 12px;
+ }
+
+
+ #toolbar input{
+ width: 100%;
+ }
+
+
+ #toolbar button{
+ border: none;
+ border-radius: 4px;
+ padding: 2px ;
+ }
